@@ -21,6 +21,7 @@ const storage = multer.diskStorage({
 
 const upload = multer({ storage: storage}).array('file')
 
+app.get('/', (req, res) => {res.send("hey")})
 app.post('/upload', function(req, res) {
     upload(req, res, function (err) {
         if (err instanceof multer.MulterError) {
@@ -361,6 +362,6 @@ function updateScript_mobileFile(filePath) {
 }
 
 // app.listen(process.env.PORT);
-app.listen(3001, () => {
-  console.log(`Server listening at http://localhost:3001`)
+app.listen(process.env.PORT || 3001, () => {
+  console.log(`Server listening at ${process.env.PORT}`);
 })
